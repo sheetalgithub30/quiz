@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
 
 function App() {
+
+
+  const [loading, setLoading] = useState(true)
+  
+ 
+
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
 
-  const fetchQuestions = () => {
-    fetch("https://opentdb.com/api.php?amount=10&type=multiple")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.response_code == 0) {
-          setQuestions(data.results);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
+  
 
   useEffect(() => {
+    const fetchQuestions = () => {
+      setLoading(true);
+      fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.response_code == 0) {
+            setQuestions(data.results);
+          }
+          setLoading(false) 
+        })
+        .catch((err) => console.log(err));
+    };
+
     fetchQuestions();
   }, []);
 
@@ -28,10 +38,14 @@ function App() {
   }
 
   return (
+    
     <div>
+          <h1>Let's have a quiz, Question : {index + 1}</h1>
+
+      {loading? <h1>loading</h1>: ""}
+      
       {index <= 9 ? (
         <div>
-          <h1>Let's have a quiz, Question : {index + 1}</h1>
           {questions.length > 0 ? (
             <div>
               <p>{questions[index].question}</p>
