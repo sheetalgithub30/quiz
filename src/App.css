@@ -1,0 +1,43 @@
+#root{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: blanchedalmond;
+}
+#main{
+    width: 50vw;
+    box-shadow: 2px 2px 10px black;
+    padding: 3rem;
+    border-radius: 20px;
+    background-color: rgb(247, 214, 164);
+}
+#main button{
+    padding: 0.5rem;
+    width: 10rem;
+    margin: 0.5rem;
+}
+
+#skip{
+    background-color: rgb(245, 220, 30);
+    border-radius: 20px;
+}
+
+#ques p{
+    margin: 1rem 0rem;
+    font-size: 1.3rem;
+}
+#over{
+    padding: 6rem;
+}
+#over h1{
+    text-align: center;
+    color: rgb(16, 112, 25);
+}
+#over p{
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 1rem;
+}

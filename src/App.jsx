@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
+import './App.css';
 
 function App() {
 
 
   const [loading, setLoading] = useState(true)
-  
- 
-
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -39,22 +37,31 @@ function App() {
 
   return (
     
-    <div>
-          <h1>Let's have a quiz, Question : {index + 1}</h1>
+    <div id="main">
 
       {loading? <h1>loading</h1>: ""}
+  
       
       {index <= 9 ? (
-        <div>
+        <div id="ques">
+              <h1>Let's have a quiz, Question : {index + 1}</h1>
           {questions.length > 0 ? (
             <div>
               <p>{questions[index].question}</p>
+              <ul>
               {questions[index].incorrect_answers.map((item, ind) => (
-                <button onClick={() => validateAnswer(false)}>{item}</button>
+                  <li>
+                   <button onClick={() => validateAnswer(false)}>{item}</button>
+                   </li>
+              
               ))}
+              <li>
               <button onClick={() => validateAnswer(true)}>
-                {questions[index].correct_answer}
+                  {questions[index].correct_answer}
               </button>
+              </li>
+              </ul>
+             
               <p style={{ display: "none" }}>
                 {" "}
                 {/* {setTimeout(() => setIndex(index + 1), 5000)} */}
@@ -63,10 +70,10 @@ function App() {
           ) : null}
 
           <br />
-          <button onClick={() => setIndex(index + 1)}>Skip Question</button>
+          <button id="skip" onClick={() => setIndex(index + 1)}>Skip Question</button>
         </div>
       ) : (
-        <div>
+        <div id="over">
           <h1>Quiz is Over</h1>
           <p>Score is : {score}/10</p>
         </div>
